@@ -20,17 +20,20 @@ public class EmployeeService {
     /**
      * 方法说明:将方法的运行结果进行缓存：以后再要相同的数据，直接从缓存中获取，不用调方法
      * Cachemanager管理多个cache组件的，对缓存的真正的CRUD操作在Cache组件中，
-     * 每一个缓存组件有自己唯一一个名字，几个属性，
-     *      cacheNames/value:指定缓存组件的名字
+     * 每一个缓存组件有自己唯一一个名字，几个属性：
+     *      cacheNames/value:指定缓存组件的名字，将方法的返回结果放在哪个缓存中，是数组的方式，可以指定多个缓存
      *      key:缓存数据使用的key，可以用它来指定。默认是使用方法参数的值   1-方法的返回值
-     *          编写spel:#id-参数id得值 #a0  #p0  #root.args[0]
-     *          keyGenerarator:key的生成器，可以自己指定key的生成器的组件id
+     *          编写SpEl:#id-参数id得值 #a0  #p0  #root.args[0]
+     *          getEmp[2]
+     *
+     *      keyGenerarator:key的生成器，可以自己指定key的生成器的组件id
      *           keyGenerarator/key:二选一使用
-     *           cacheManager:指定缓存管理器,或者cacheResolver指定获取解析器
-     *           condition:指定符合条件的情况下才缓存； condition = "#id>0"
-     *           unless否定缓存，当unless指定的条件为true,方法的返回值就不会被缓存，可以获取到结果进行判断
+     *      cacheManager:指定缓存管理器,或者cacheResolver指定获取解析器
+     *      condition:指定符合条件的情况下才缓存； condition = "#id>0"
+     *                condition = "#a0>1" 第一个参数大于才缓存
+     *      unless否定缓存，当unless指定的条件为true,方法的返回值就不会被缓存，可以获取到结果进行判断
      *                    unless=“#result == null”
-     *           sync:是否使用异步模式
+     *      sync:是否使用异步模式
      * 原理：
      *  1.自动配置类
      *  2.缓存的配置类
@@ -70,7 +73,9 @@ public class EmployeeService {
      * @para :
      * @return :
      */
-    @Cacheable(cacheNames = "emp")
+    //key="#root.methodName+'['+#id+']'"
+    //keyGenerator = "myKeyGenerator"
+    @Cacheable(cacheNames = "emp",keyGenerator = "myKeyGenerator",condition = "#a0>1")
     public Employee getEmp(Integer id){
         Employee emp = employeeMapper.getEmpById(id);
         System.out.println("查询"+id+"员工");
