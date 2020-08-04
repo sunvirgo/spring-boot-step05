@@ -30,4 +30,16 @@ public class EmployeeController {
         return  emp;
     }
 
+    /**
+     * 方法说明:
+     * @author : 黄刚
+     * @date : 2020/8/4 21:39
+     * @para : []
+     * @return : com.sunvirgo.cache.bean.Employee
+     */
+    @GetMapping("/emp")
+    public Employee updateEmployee(Employee employee){
+        Employee emp = employeeService.updateEmp(employee);
+        return  emp;
+    }
 }
