@@ -42,4 +42,29 @@ public class EmployeeController {
         Employee emp = employeeService.updateEmp(employee);
         return  emp;
     }
+
+    /**
+     * 方法说明:
+     * @author : 黄刚
+     * @date : 2020/8/15 14:00
+     * @para : [employee]
+     * @return : com.sunvirgo.cache.bean.Employee
+     */
+    @GetMapping("/delemp")
+    public String deleteEmployee(Integer id){
+        employeeService.deleteEmp(id);
+        return  "success";
+    }
+
+    /**
+     * 方法说明:
+     * @author : 黄刚
+     * @date : 2020/8/16 22:07
+     * @para : [lastName]
+     * @return : com.sunvirgo.cache.bean.Employee
+     */
+    @GetMapping("/emp/lastname/{lastName}")
+    public Employee getEmpByLastName(@PathVariable("lastName") String lastName){
+        return employeeService.getEmpByLastName(lastName);
+    }
 }

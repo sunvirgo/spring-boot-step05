@@ -8,6 +8,8 @@ spring:
     #  - classpath:department.sql
     #springboot2.x需要配置属性
     #initialization-mode: always
+  redis:
+    host: 118.24.44.169
 #开启驼峰命名法规则
 mybatis:
   configuration:

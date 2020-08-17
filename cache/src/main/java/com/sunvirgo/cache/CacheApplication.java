@@ -21,6 +21,10 @@ import org.springframework.cache.annotation.EnableCaching;
  *           @Cacheable
  *           @CacheEvict
  *           @Cacheput
+ * 默认使用的是ConcurrentMapCacheManager==ConcurrentMapCache,将数据保存在ConcurrentMap<Onject></>
+ * 开发使用缓存中间件：redis,memcached,ehcacahe
+ * 1.安装redis 使用docker
+ * 2.引入redis的stater
  * @author : 黄刚
  * @date : 2020/7/26 21:24
  * @para :

@@ -52,4 +52,14 @@ public interface EmployeeMapper {
      */
     @Insert("Insert into employee(lastName,email,gender,d_id) values(#{lastName},#{email},#{gender},#{dId})")
     public void insertEmployee(Employee employee);
+
+    /**
+     * 方法说明:
+     * @author : 黄刚
+     * @date : 2020/8/16 22:01
+     * @para : [lastName]
+     * @return : com.sunvirgo.cache.bean.Employee
+     */
+    @Select("Select * from employee where lastName=#{lastName}")
+    public Employee getEmpByLastName(String lastName);
 }
