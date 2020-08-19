@@ -25,6 +25,8 @@ import org.springframework.cache.annotation.EnableCaching;
  * 开发使用缓存中间件：redis,memcached,ehcacahe
  * 1.安装redis 使用docker
  * 2.引入redis的stater
+ * 3.配置redis
+ * 4.测试缓存
  * @author : 黄刚
  * @date : 2020/7/26 21:24
  * @para :
